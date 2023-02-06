@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'LemonMilkProRegular';
+    src: url('fonts/LEMONMILKPro-Regular.otf');
+}
+
+@font-face {
+    font-family: 'LemonMilkProSemiBold';
+    src: url('fonts/LEMONMILKPro-SemiBold.otf');
+}
+
+@font-face {
+    font-family: 'LemonMilkProUltraBold';
+    src: url('fonts/LEMONMILKPro-UltraBold.otf');
+}
+
+body {
+    margin: 0;
+    background-color: #999;
+}
+
+.main-area {
+    font-family: 'LemonMilkProRegular';
+    width: 100%;
+    height: auto;
+    max-width: 480px;
+    overflow: hidden;
+    margin: 0 auto;
+    background-image: url('assets/bg.webp');
+    background-size: 100% 100vh;
+}
+
+
+.screen {
+    background-image: url('/assets/overlay.webp');
+    width: 100%;
+    height: 100vh;
+    background-size: 100% 100vh;
+    display: block;
+    position: relative;
+}
+

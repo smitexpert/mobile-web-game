@@ -1,0 +1,66 @@
+version: "3.7"
+services:
+  mobileapp:
+    build:
+      context: ./php/
+      dockerfile: Dockerfile
+    image: mobile-php8.1-image
+    container_name: mobile-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./../:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - mobile-app-network
+
+  mobiledb:
+    image: mysql:5.7
+    container_name: mobile-db
+    restart: unless-stopped
+    ports:
+      - "7306:3306"
+    environment:
+      MYSQL_DATABASE: mobile-app
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_USER: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mysql/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    depends_on:
+      - mobileapp
+    networks:
+      - mobile-app-network
+
+  mobilenginx:
+    image: nginx:alpine
+    container_name: mobile-nginx
+    restart: unless-stopped
+    ports:
+      - 7080:80
+    volumes:
+      - ./../:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - mobileapp
+    networks:
+      - mobile-app-network
+
+  mobilephpmyadmin:
+    image: phpmyadmin
+    container_name: mobile-phpmyadmin
+    restart: always
+    ports:
+      - 7081:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PASSWORD=root
+    networks:
+      - mobile-app-network
+
+networks:
+  mobile-app-network:
+    driver: bridge
