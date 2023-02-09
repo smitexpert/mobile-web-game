@@ -141,6 +141,7 @@ export default {
         </template>
         <template v-else>
             <template v-if="!countdown">
+                <Menu />
                 <div>
                     <div class="question-area">
                         <div class="player-name">
