@@ -7,7 +7,7 @@
             <Link href="game" class="link">PLAY GAME</Link>
         </div>
         <div class="social-media">
-            <a href="#" class="social-link">
+            <a href="https://www.instagram.com/cyberz/" class="social-link">
                 <img src="~/../../../public/assets/insta.webp" alt="">
             </a>
             <a href="#" class="social-link">

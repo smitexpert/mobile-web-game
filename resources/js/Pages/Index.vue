@@ -12,16 +12,16 @@
         </div>
         <div class="bottom-sheet">
             <div class="bottom-area">
-                <p class="title">Bist du bereit fur CYBERZ?</p>
+                <p class="title">Bist du bereit fÜr CYBERZ?</p>
                 <p class="content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis vel fugit quo officia delectus aliquam eveniet!
+                    Um fortzufahren musst du mindestens 16 Jahre oder älter sein. Bist du alt genug?
                 </p>
             </div>
         </div>
 
         <div class="bottom-link">
-            <Link class="link-accept" href="/home">Ja, ich bin schon 16 Jahre oder alter</Link>
-            <a class="link-wrong" href="https://www.bierbewusstgeniessen.de/">Nein, ledier noch nicht.</a>
+            <Link class="link-accept" href="/home">Ja, ich bin schon 16 Jahre alt oder älter</Link>
+            <a class="link-wrong" href="https://www.bierbewusstgeniessen.de/">Nein, leider noch nicht</a>
         </div>
     </div>
 </template>

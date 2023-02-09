@@ -3,6 +3,7 @@ export default {
     props: {
         content: null,
         title: null,
+        rules: [],
     },
     data() {
         return {
@@ -25,6 +26,10 @@ export default {
         <template v-if="show && (content != null)">
             <div class="how-to">
                 <p class="center">{{ title }}</p>
+                <ul>
+                    <li v-for="(rule, index) in rules" :key="index">{{ rule }}</li>
+                </ul>
+
                 {{ content }}
             </div>
         </template>
@@ -83,6 +88,11 @@ export default {
     font-family: 'LemonMilkProSemiBold';
     text-align: center;
     font-weight: bolder;
+}
+
+.how-to ul {
+    padding: 0;
+    list-style-type: none;
 }
 
 </style>

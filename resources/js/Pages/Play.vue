@@ -17,8 +17,16 @@ export default {
     },
     data(){
         return {
-            howto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut delectus nulla architecto ex. Eligendi tempore libero reiciendis ex, consequuntur doloremque perspiciatis autem sunt id, molestiae repellendus esse, omnis harum. Voluptatem!',
+            howto: 'Jeden Monat gibt es neue Challenges, also keep on playing ;)',
             howTitle: 'How to Play:',
+            rules: [
+                '1. Wähle deine Geschmacksrichtung.',
+                '2. Gib deinen Namen und den deiner Buddys ein.',
+                '3. Die Challenge erscheint.',
+                '4. Du und dein Buddy, der in der Aufgabe genannt wird, müsst gleichzeitig eine zufällige Zahl innerhalb des angegebenen Bereichs (Feld: Odds) sagen, nachdem der Countdown abgelaufen ist.',
+                '5. Wenn ihr beide die gleiche Zahl sagt, müsst ihr die Herausforderung annehmen und die Challenge annehmen.',
+                '6. Wenn ihr unterschiedliche Zahlen sagt, könnt ihr zur nächsten Aufgabe übergehen.'
+            ],
             names: [],
             name: null,
             player: null,
@@ -71,7 +79,10 @@ export default {
         },
         setPlayer() {
             this.player = this.names[Math.floor(Math.random()*this.names.length)];
-            this.buddy = this.names[Math.floor(Math.random()*this.names.length)];
+
+            const names = this.names.filter(item => item !== this.player);
+
+            this.buddy = names[Math.floor(Math.random()*names.length)];
         },
         handleSubmit() {
 
@@ -113,7 +124,7 @@ export default {
         <template v-if="!isStart">
             <Menu />
             <Logo title="WAS SIND DIE ODDS?" />
-            <HowTo :content="howto" :title="howTitle" />
+            <HowTo :content="howto" :title="howTitle" :rules="rules" />
             <div class="name-area">
                 <label for="">Wer spielt alles mit?</label>
                 <div class="name-input">
@@ -125,7 +136,7 @@ export default {
                 </div>
             </div>
             <div class="bottom-button">
-                <button v-if="names.length > 0" class="go-btn" @click="handleStart">LET'S GO</button>
+                <button v-if="names.length > 1" class="go-btn" @click="handleStart">LET'S GO</button>
             </div>
         </template>
         <template v-else>
@@ -344,11 +355,10 @@ export default {
     text-align: center;
     position: fixed;
     bottom: 0;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     margin-bottom: 5px;
     max-width: 480px;
 }
-
 .bottom-button .go-btn {
     font-family: 'LemonMilkProRegular';
     font-size: 18px;
@@ -358,7 +368,25 @@ export default {
     padding: 5px 30px;
     border-radius: 6px;
     bottom: 50px;
+    animation: button-animation 1s ease infinite;
+    background: linear-gradient(90deg, #a9fa44 0%, #ff00a8 100%);
+    background-size: 400px 400px;
     border: none;
+}
+
+@keyframes button-animation {
+    0% {
+        padding: 10px 50px;
+        background-position: 0% 50%;
+    }
+    50% {
+        padding: 15px 60px;
+        background-position: 50% 100%;
+    }
+    100% {
+        padding: 10px 50px;
+        background-position: 100% 0%;
+    }
 }
 
 </style>

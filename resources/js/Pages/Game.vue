@@ -13,9 +13,17 @@ export default {
     },
     data(){
         return {
-            howto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut delectus nulla architecto ex. Eligendi tempore libero reiciendis ex, consequuntur doloremque perspiciatis autem sunt id, molestiae repellendus esse, omnis harum. Voluptatem!',
+            howto: 'Jeden Monat gibt es neue Challenges, also keep on playing ;)',
             howTitle: 'How to Play:',
-            selecte: false
+            selecte: false,
+            rules: [
+                '1. Wähle deine Geschmacksrichtung.',
+                '2. Gib deinen Namen und den deiner Buddys ein.',
+                '3. Die Challenge erscheint.',
+                '4. Du und dein Buddy, der in der Aufgabe genannt wird, müsst gleichzeitig eine zufällige Zahl innerhalb des angegebenen Bereichs (Feld: Odds) sagen, nachdem der Countdown abgelaufen ist.',
+                '5. Wenn ihr beide die gleiche Zahl sagt, müsst ihr die Herausforderung annehmen und die Challenge annehmen.',
+                '6. Wenn ihr unterschiedliche Zahlen sagt, könnt ihr zur nächsten Aufgabe übergehen.'
+            ]
         }
     },
     methods: {
@@ -30,12 +38,12 @@ export default {
     <div class="screen">
         <Menu />
         <Logo title="WAS SIND DIE ODDS?" />
-        <HowTo :content="howto" :title="howTitle" />
+        <HowTo :content="howto" :title="howTitle" :rules="rules" />
 
         <div class="flavours">
             <div class="item" @click="handleSelect">
                 <img src="~/../../../public/assets/orange.webp" alt="">
-                <button class="select-btn suss">SUSS-SAUER</button>
+                <button class="select-btn suss">SÜss-Sauer</button>
             </div>
             <div class="item" @click="handleSelect">
                 <img src="~/../../../public/assets/red.webp" alt="">
@@ -100,7 +108,7 @@ export default {
     text-align: center;
     position: fixed;
     bottom: 0;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     max-width: 480px;
 }
 
@@ -113,6 +121,24 @@ export default {
     padding: 5px 30px;
     border-radius: 6px;
     bottom: 50px;
+    animation: button-animation 1s ease infinite;
+    background: linear-gradient(90deg, #a9fa44 0%, #ff00a8 100%);
+    background-size: 400px 400px;
+}
+
+@keyframes button-animation {
+    0% {
+        padding: 10px 50px;
+        background-position: 0% 50%;
+    }
+    50% {
+        padding: 15px 60px;
+        background-position: 50% 100%;
+    }
+    100% {
+        padding: 10px 50px;
+        background-position: 100% 0%;
+    }
 }
 
 .bottom-button .disabled-button {
