@@ -158,7 +158,7 @@ export default {
                         <div class="difficulty-score">
                             <br>
                             <p>
-                                Zahien: {{ this.challenge.difficulty }}
+                                Odds: {{ this.challenge.difficulty }}
                             </p>
                         </div>
                         <br>

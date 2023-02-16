@@ -1,6 +1,7 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { createDeviceDetector } from "next-vue-device-detector";
+import VueCookies from 'vue-cookies'
 
 const device = createDeviceDetector()
 createInertiaApp({
@@ -12,6 +13,7 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(device)
+      .use(VueCookies, { expires: '30d' })
       .mount(el)
   },
 })

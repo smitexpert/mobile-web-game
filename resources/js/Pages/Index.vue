@@ -23,6 +23,19 @@
             <Link class="link-accept" href="/home">Ja, ich bin schon 16 Jahre alt oder älter</Link>
             <a class="link-wrong" href="https://www.bierbewusstgeniessen.de/">Nein, leider noch nicht</a>
         </div>
+
+        <template v-if="ispop">
+            <div class="pop-up">
+                <div class="pop-body">
+                    <h2>Cookie-Zustimmung verwalten</h2>
+                    <p>Um dir ein optimales Erlebnis zu bieten, verwenden wir Technologien wie Cookies, um Geräteinformationen zu speichern und/oder darauf zuzugreifen. Wenn du diesen Technologien zustimmst, können wir Daten wie das Surfverhalten oder eindeutige IDs auf dieser Website verarbeiten. Wenn du deine Zustimmung nicht erteilst oder zurückziehst, können bestimmte Merkmale und Funktionen beeinträchtigt werden.</p>
+                    <div class="pop-up-btn">
+                        <button @click="closePopUp" class="pop-btn info">Akzeptieren</button>
+                        <button @click="closePopUp" class="pop-btn">Ablehnen</button>
+                    </div>
+                </div>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -33,7 +46,14 @@ import {Link} from '@inertiajs/vue3'
 
 export default {
     mounted() {
-        console.log(this.$device);
+        if(this.$cookies.get('confirmCookies') == null) {
+            this.ispop = true;
+        }
+    },
+    data() {
+        return {
+            ispop: false,
+        }
     },
     components: {
         Logo,
@@ -43,6 +63,10 @@ export default {
     methods: {
         routeToGame() {
             window.location.replace('/game');
+        },
+        closePopUp() {
+            this.ispop = false;
+            this.$cookies.set('confirmCookies', true)
         }
     }
 }
@@ -51,6 +75,53 @@ export default {
 
 
 <style scoped>
+
+
+.pop-up {
+    position: fixed;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    max-width: 480px;
+}
+
+.pop-up .pop-body {
+    padding: 20px;
+    background: #FFF;
+    width: 80%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    margin: 0 auto;
+    left: 50%;
+    margin-left: -44%;
+    margin-top: -150px;
+}
+
+
+.pop-up .pop-body h2 {
+    font-size: 16px;
+}
+
+.pop-up .pop-body p {
+    font-size: 12px;
+}
+
+.pop-up .pop-body .pop-btn {
+    border: none;
+    margin: 0 10px;
+    font-size: 14px;
+    padding: 10px 20px;
+    background-color: rgb(236, 236, 236);
+    border: 1px solid #e0e0e0;
+}
+
+.pop-up .pop-body .pop-btn.info {
+    background-color: rgb(0, 119, 255);
+    color: #FFF;
+}
 
     .bottom-sheet {
         position: fixed;
