@@ -38,6 +38,8 @@ export default {
                         <ul>
                             <li><Link class="link" href="/">Home</Link></li>
                             <li><Link class="link" href="/game">Game</Link></li>
+                            <li><a class="link" href="https://www.radeberger-gruppe.de/impressum-und-datenschutz/">Datenschutzerklärung</a></li>
+                            <li><a class="link" href="https://www.radeberger-gruppe.de/impressum-und-datenschutz/impressum.html">Impressum</a></li>
                         </ul>
                     </div>
                 </div>

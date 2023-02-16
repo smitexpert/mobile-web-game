@@ -43,7 +43,7 @@ export default {
         <div class="flavours">
             <div class="item" @click="handleSelect">
                 <img src="~/../../../public/assets/orange.webp" alt="">
-                <button class="select-btn suss">SÜss-Sauer</button>
+                <button class="select-btn suss">Süss-Sauer</button>
             </div>
             <div class="item" @click="handleSelect">
                 <img src="~/../../../public/assets/red.webp" alt="">

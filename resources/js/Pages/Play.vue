@@ -65,7 +65,8 @@ export default {
             counter: 3,
             interval: null,
             passedChallenge: [],
-            challenge: null
+            challenge: null,
+            fixedY: null
         }
     },
     methods: {
@@ -73,7 +74,11 @@ export default {
             axios.post('/api/challenge', {
                 challenge_ids: this.passedChallenge
             }).then(res => {
+                let res_challenge = res.data.challenge;
+                let convert_challenge = res_challenge.replace("Y", this.fixedY ?? 'Y');
+                convert_challenge = convert_challenge.replace("X", this.player ?? 'X');
                 this.challenge = res.data;
+                this.challenge.challenge = convert_challenge;
                 this.passedChallenge.push(res.data.id);
             })
         },
@@ -83,6 +88,7 @@ export default {
             const names = this.names.filter(item => item !== this.player);
 
             this.buddy = names[Math.floor(Math.random()*names.length)];
+            this.fixedY = names[Math.floor(Math.random()*names.length)];
         },
         handleSubmit() {
 
@@ -99,6 +105,10 @@ export default {
         },
         handleStart() {
             this.setPlayer();
+            let res_challenge = this.challenge.challenge;
+            let convert_challenge = res_challenge.replace("Y", this.fixedY);
+            convert_challenge = convert_challenge.replace("X", this.player);
+            this.challenge.challenge = convert_challenge;
             this.isStart = true;
             this.countdown = false;
             this.counter = 3;

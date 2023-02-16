@@ -30,9 +30,6 @@ export default {
             }
         }
     },
-    mounted() {
-        console.log(this.$device);
-    },
     components: {
         Logo,
         Menu,

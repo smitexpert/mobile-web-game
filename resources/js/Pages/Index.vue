@@ -32,6 +32,8 @@
                     <div class="pop-up-btn">
                         <button @click="closePopUp" class="pop-btn info">Akzeptieren</button>
                         <button @click="closePopUp" class="pop-btn">Ablehnen</button>
+                        <a href="https://www.radeberger-gruppe.de/impressum-und-datenschutz/" class="pop-btn">Datenschutzerklärung</a>
+                        <a href="https://www.radeberger-gruppe.de/impressum-und-datenschutz/impressum.html" class="pop-btn">Impressum</a>
                     </div>
                 </div>
             </div>
@@ -109,13 +111,22 @@ export default {
     font-size: 12px;
 }
 
+.pop-up .pop-body .pop-up-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
 .pop-up .pop-body .pop-btn {
     border: none;
-    margin: 0 10px;
-    font-size: 14px;
-    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 10px;
+    padding: 10px 5px;
+    display: inline-block;
     background-color: rgb(236, 236, 236);
     border: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #000;
 }
 
 .pop-up .pop-body .pop-btn.info {
