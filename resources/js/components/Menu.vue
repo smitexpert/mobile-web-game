@@ -28,6 +28,7 @@ export default {
                 <span class="bumb"></span>
             </div>
         </div>
+        <TransitionGroup>
         <template v-if="isOpen">
             <div class="menu-content">
                 <div class="inner-area">
@@ -45,6 +46,7 @@ export default {
                 </div>
             </div>
         </template>
+        </TransitionGroup>
     </div>
 </template>
 
@@ -74,7 +76,7 @@ export default {
 
 .menu-content .inner-area .menu-items ul li .link {
     font-family: 'LemonMilkProSemiBold';
-    font-size: 22px;
+    font-size: 18px;
     color: #ffffff;
     display: block;
     text-decoration: none;
@@ -122,4 +124,13 @@ export default {
     margin: 4px 0;
 }
 
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

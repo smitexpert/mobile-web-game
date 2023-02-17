@@ -10,7 +10,7 @@
             <a href="https://www.instagram.com/cyberz/" class="social-link">
                 <img src="~/../../../public/assets/insta.webp" alt="">
             </a>
-            <a href="#" class="social-link">
+            <a href="https://www.tiktok.com/@cyberzcrew?_t=8ZwufvBftJ8&_r=1" class="social-link">
                 <img src="~/../../../public/assets/tiktok.webp" alt="">
             </a>
         </div>

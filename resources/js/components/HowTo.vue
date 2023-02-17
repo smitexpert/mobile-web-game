@@ -23,6 +23,7 @@ export default {
         <div class="text-area">
             <p @click="toggleContent"><span class="question" v-if="!show">?</span><span class="back" v-else>&#10149;</span> How to</p>
         </div>
+        <TransitionGroup>
         <template v-if="show && (content != null)">
             <div class="how-to">
                 <p class="center">{{ title }}</p>
@@ -33,6 +34,7 @@ export default {
                 {{ content }}
             </div>
         </template>
+        </TransitionGroup>
     </div>
 </template>
 
@@ -76,7 +78,7 @@ export default {
     font-size: 12px;
     position: absolute;
     height: auto;
-    background: rgba(000, 000, 000, 0.6);
+    background: rgba(000, 000, 000, 0.9);
     padding: 14px;
     margin-top: 10px;
     border-radius: 10px;
@@ -93,6 +95,16 @@ export default {
 .how-to ul {
     padding: 0;
     list-style-type: none;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 
 </style>

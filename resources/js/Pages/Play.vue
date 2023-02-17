@@ -70,16 +70,11 @@ export default {
         }
     },
     methods: {
-        fetchData() {
-            axios.post('/api/challenge', {
+        async fetchData() {
+            await axios.post('/api/challenge', {
                 challenge_ids: this.passedChallenge
             }).then(res => {
-                let res_challenge = res.data.challenge;
-                let convert_challenge = res_challenge.replace("Y", this.fixedY ?? 'Y');
-                convert_challenge = convert_challenge.replace("X", this.player ?? 'X');
                 this.challenge = res.data;
-                this.challenge.challenge = convert_challenge;
-                this.passedChallenge.push(res.data.id);
             })
         },
         setPlayer() {
@@ -87,12 +82,23 @@ export default {
 
             const names = this.names.filter(item => item !== this.player);
 
+            console.log(names);
+
             this.buddy = names[Math.floor(Math.random()*names.length)];
             this.fixedY = names[Math.floor(Math.random()*names.length)];
+
+
+            let res_challenge = this.challenge.challenge;
+            let convert_challenge = res_challenge.replace("Y", this.fixedY);
+            convert_challenge = convert_challenge.replace("X", this.player);
+            this.challenge.challenge = convert_challenge;
         },
         handleSubmit() {
 
             if(this.names.length >= 5)
+                return
+
+            if(this.names.filter(item => item == this.name.toUpperCase()).length > 0)
                 return
 
             if(this.name != null)
@@ -103,22 +109,17 @@ export default {
         handleRemove(index) {
             this.names.splice(index, 1);
         },
-        handleStart() {
-            this.setPlayer();
-            let res_challenge = this.challenge.challenge;
-            let convert_challenge = res_challenge.replace("Y", this.fixedY);
-            convert_challenge = convert_challenge.replace("X", this.player);
-            this.challenge.challenge = convert_challenge;
+        async handleStart() {
+            await this.setPlayer();
             this.isStart = true;
             this.countdown = false;
             this.counter = 3;
             clearInterval(this.interval);
         },
-        handleCounter() {
+        async handleCounter() {
             this.countdown = true;
 
-            this.fetchData();
-            this.setPlayer();
+            await this.fetchData();
 
             this.interval = setInterval(() => {
                 if(this.counter > 0)
@@ -142,7 +143,9 @@ export default {
                     <input type="text" v-model="name" v-on:keyup.enter="handleSubmit">
                 </div>
                 <div class="selected-name">
+                    <TransitionGroup>
                     <div v-for="(item, index) in names" :key="index" class="name" @click="handleRemove(index)">{{ item }}</div>
+                    </TransitionGroup>
                 </div>
             </div>
             <div class="bottom-button">
@@ -150,8 +153,11 @@ export default {
             </div>
         </template>
         <template v-else>
+
+            <TransitionGroup>
             <template v-if="!countdown">
                 <Menu />
+                <HowTo :content="howto" :title="howTitle" :rules="rules" />
                 <div>
                     <div class="question-area">
                         <div class="player-name">
@@ -192,6 +198,7 @@ export default {
                     <button v-if="counter == 0" class="go-btn" @click="handleStart">NEXT!</button>
                 </div>
             </template>
+        </TransitionGroup>
         </template>
 
     </div>
@@ -399,5 +406,16 @@ export default {
         background-position: 100% 0%;
     }
 }
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
 
 </style>
