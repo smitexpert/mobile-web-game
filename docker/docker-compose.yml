@@ -24,7 +24,7 @@ services:
       MYSQL_DATABASE: mobile-app
       MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: password
-      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_USER: 123321bd
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
@@ -44,6 +44,7 @@ services:
     volumes:
       - ./../:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - mobile-data:/var/lib/mysql
     depends_on:
       - mobileapp
     networks:
@@ -56,10 +57,13 @@ services:
     ports:
       - 7081:80
     environment:
-      - PMA_HOST=db
+      - PMA_HOST=mobiledb
       - PMA_PASSWORD=root
     networks:
       - mobile-app-network
+
+volumes:
+    mobile-data:
 
 networks:
   mobile-app-network:
