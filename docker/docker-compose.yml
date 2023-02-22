@@ -40,10 +40,12 @@ services:
     container_name: mobile-nginx
     restart: unless-stopped
     ports:
-      - 7080:80
+      - 80:80
+      - 443:443
     volumes:
       - ./../:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./ssl:/etc/nginx/ssl
       - mobile-data:/var/lib/mysql
     depends_on:
       - mobileapp
