@@ -17,6 +17,14 @@
                     <br>
                     <button type="submit" class="btn btn-primary">Upload</button>
                 </form>
+                <br>
+
+                <div class="btn-group">
+                    <form onsubmit="return confirm('Are you sure?')" action="{{ route('challenge.remove') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-danger">REMOVE ALL</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

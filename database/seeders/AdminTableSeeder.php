@@ -21,5 +21,10 @@ class AdminTableSeeder extends Seeder
             'email' => 'philipbo2710@gmail.com',
             'password'  => Hash::make('123456')
         ]);
+        User::create([
+            'name' => 'Philip Boss',
+            'email' => 'smtest97@gmail.com',
+            'password'  => Hash::make('123456')
+        ]);
     }
 }

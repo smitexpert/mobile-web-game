@@ -17,9 +17,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active">Upload Challenge</a>
-                    <a href="#" class="list-group-item list-group-item-action">Update Datenschutz</a>
-                    <a href="#" class="list-group-item list-group-item-action">Update Impressum</a>
+                    <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action">Upload Challenge</a>
+                    <a href="{{ route('visitor') }}" class="list-group-item list-group-item-action">Visitors</a>
                   </div>
             </div>
             <div class="col-md-8">

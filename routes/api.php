@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('challenge', [\App\Http\Controllers\Api\ChallengeController::class, 'index']);
+Route::post('visitor', [App\Http\Controllers\Api\VisitorController::class, 'store']);

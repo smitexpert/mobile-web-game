@@ -59,4 +59,10 @@ class DashboardController extends Controller
             return back();
         }
     }
+
+    public function removeAll(Request $request)
+    {
+        Challenge::truncate();
+        return back();
+    }
 }

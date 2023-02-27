@@ -2,6 +2,7 @@
     <div class="screen">
         <Menu />
         <Logo title="PRE-PARTY HUB" />
+        <HowTo :content="howto" :title="howTitle" :rules="rules" />
 
         <div class="play-area">
             <Link href="game" class="link">PLAY GAME</Link>
@@ -20,20 +21,38 @@
 <script>
 import Logo from '../components/Logo.vue'
 import Menu from '../components/Menu.vue'
+import HowTo from '../components/HowTo.vue'
 import {Link} from '@inertiajs/vue3'
+import axios from 'axios';
 
 export default {
+    mounted() {
+        axios.post('/api/visitor').then(response => {
+            console.log(response.data);
+        })
+    },
     data() {
         return {
             images: {
                 // insta: require('./assets/insta.webp')
-            }
+            },
+            howto: 'Jeden Monat gibt es neue Challenges, also keep on playing ;)',
+            howTitle: 'How to Play:',
+            rules: [
+                '1. Wähle deine Geschmacksrichtung.',
+                '2. Gib deinen Namen und den deiner Buddys ein.',
+                '3. Die Challenge erscheint.',
+                '4. Du und dein Buddy, der in der Aufgabe genannt wird, müsst gleichzeitig eine zufällige Zahl innerhalb des angegebenen Bereichs (Feld: Odds) sagen, nachdem der Countdown abgelaufen ist.',
+                '5. Wenn ihr beide die gleiche Zahl sagt, müsst ihr die Herausforderung annehmen und die Challenge annehmen.',
+                '6. Wenn ihr unterschiedliche Zahlen sagt, könnt ihr zur nächsten Aufgabe übergehen.'
+            ]
         }
     },
     components: {
         Logo,
         Menu,
-        Link
+        Link,
+        HowTo
     },
     methods: {
         routeToGame() {
@@ -66,12 +85,13 @@ export default {
     }
 
     .social-media {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         width: 100%;
         display: flex;
         justify-content: space-evenly;
         margin: 20px 0;
+        max-width: 480px;
     }
 
     .social-media .social-link {

@@ -153,8 +153,6 @@ export default {
             </div>
         </template>
         <template v-else>
-
-            <TransitionGroup>
             <template v-if="!countdown">
                 <Menu />
                 <HowTo :content="howto" :title="howTitle" :rules="rules" />
@@ -198,7 +196,6 @@ export default {
                     <button v-if="counter == 0" class="go-btn" @click="handleStart">NEXT!</button>
                 </div>
             </template>
-        </TransitionGroup>
         </template>
 
     </div>
