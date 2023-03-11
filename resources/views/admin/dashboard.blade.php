@@ -29,6 +29,7 @@
         </div>
     </div>
 </div>
+<br>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -43,6 +44,7 @@
                             <th>Title</th>
                             <th>Challenge</th>
                             <th>Difficulty</th>
+                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +54,9 @@
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->challenge }}</td>
                                 <td>{{ $item->difficulty }}</td>
+                                <td>
+                                    <a href="{{ route('challenge.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">EDIT</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

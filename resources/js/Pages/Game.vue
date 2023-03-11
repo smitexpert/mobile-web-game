@@ -99,7 +99,7 @@ export default {
 }
 
 .flavours .item .select-btn.suss {
-    background-color: #a9fa44;
+    background-color: #4e761b;
 }
 
 .bottom-button {

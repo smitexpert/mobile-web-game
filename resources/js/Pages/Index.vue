@@ -14,7 +14,7 @@
             <div class="bottom-area">
                 <p class="title">Bist du bereit fÜr CYBERZ?</p>
                 <p class="content">
-                    Um fortzufahren musst du mindestens 16 Jahre oder älter sein. Bist du alt genug?
+                    Musst du mindestens 16 Jahre oder älter sein. Bist du alt genug?
                 </p>
             </div>
         </div>

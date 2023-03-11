@@ -32,9 +32,13 @@ Route::prefix('admin')->group(function(){
     Route::middleware('auth')->group(function(){
         Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
+
         Route::post('challenge', [\App\Http\Controllers\DashboardController::class, 'challenge'])->name('challenge');
         Route::post('remove-all', [\App\Http\Controllers\DashboardController::class, 'removeAll'])->name('challenge.remove');
+        Route::get('challenge/{id}', [\App\Http\Controllers\DashboardController::class, 'edit'])->name('challenge.edit');
+        Route::post('challenge/{id}', [\App\Http\Controllers\DashboardController::class, 'update'])->name('challenge.update');
 
         Route::get('visitors', [\App\Http\Controllers\VisitorController::class, 'index'])->name('visitor');
+        Route::get('visitors/download', [\App\Http\Controllers\VisitorController::class, 'download'])->name('visitor.download');
     });
 });

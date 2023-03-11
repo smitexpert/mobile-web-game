@@ -12,5 +12,6 @@ class Visitor extends Model
     protected $fillable = [
         'ip',
         'user_agent',
+        'action'
     ];
 }

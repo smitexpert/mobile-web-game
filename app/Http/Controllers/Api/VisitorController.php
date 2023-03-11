@@ -13,7 +13,8 @@ class VisitorController extends Controller
         try {
             Visitor::create([
                 'ip' => $request->ip(),
-                'user_agent' => $request->userAgent()
+                'user_agent' => $request->userAgent(),
+                'action'    => $request->action
             ]);
         } catch (\Throwable $th) {
             //throw $th;

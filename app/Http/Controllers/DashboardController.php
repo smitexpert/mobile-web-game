@@ -60,6 +60,24 @@ class DashboardController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $challenge = Challenge::findOrFail($id);
+        return view('admin.edit', compact('challenge'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $challenge = Challenge::findOrFail($id);
+        $challenge->update([
+            'title' => $request->title,
+            'challenge' => $request->challenge,
+            'difficulty' => $request->difficulty
+        ]);
+
+        return back();
+    }
+
     public function removeAll(Request $request)
     {
         Challenge::truncate();

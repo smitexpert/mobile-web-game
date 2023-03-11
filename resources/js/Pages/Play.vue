@@ -14,6 +14,9 @@ export default {
     },
     mounted() {
         this.fetchData();
+        axios.post('/api/visitor', {action: 'PLAY'}).then(response => {
+            console.log(response.data);
+        })
     },
     data(){
         return {
