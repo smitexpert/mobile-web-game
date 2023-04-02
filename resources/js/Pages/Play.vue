@@ -2,6 +2,7 @@
 import Menu from '../components/Menu.vue';
 import Logo from '../components/Logo.vue';
 import HowTo from '../components/HowTo.vue';
+import PopUp from '../components/PopUp.vue';
 import { Link } from '@inertiajs/vue3';
 import axios from 'axios';
 
@@ -10,7 +11,8 @@ export default {
         Menu,
         Logo,
         HowTo,
-        Link
+        Link,
+        PopUp
     },
     mounted() {
         this.fetchData();
@@ -69,10 +71,16 @@ export default {
             interval: null,
             passedChallenge: [],
             challenge: null,
-            fixedY: null
+            fixedY: null,
+            playCount: 0,
+            showPopUpWhen: 5
         }
     },
     methods: {
+        async exitPopUp() {
+            this.playCount = this.playCount+1;
+            this.handleStart()
+        },
         async fetchData() {
             await axios.post('/api/challenge', {
                 challenge_ids: this.passedChallenge
@@ -120,7 +128,14 @@ export default {
             clearInterval(this.interval);
         },
         async handleCounter() {
-            this.countdown = true;
+
+            this.playCount = this.playCount+1;
+
+            if(this.playCount == this.showPopUpWhen) {
+                await this.fetchData();
+            }else {
+                this.countdown = true;
+            }
 
             await this.fetchData();
 
@@ -157,6 +172,9 @@ export default {
         </template>
         <template v-else>
             <template v-if="!countdown">
+                <template v-if="playCount == showPopUpWhen">
+                    <PopUp @exit-popup="exitPopUp" />
+                </template>
                 <Menu />
                 <HowTo :content="howto" :title="howTitle" :rules="rules" />
                 <div>
