@@ -78,7 +78,7 @@ export default {
     },
     methods: {
         async exitPopUp() {
-            this.playCount = this.playCount+1;
+            this.playCount = 0;
             this.handleStart()
         },
         async fetchData() {

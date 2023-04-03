@@ -31,6 +31,16 @@
                 </div>
             </div>
 
+
+            <div class="social-media">
+                <a href="/visit/insta" class="social-link">
+                    <img src="~/../../../public/assets/insta.webp" alt="">
+                </a>
+                <a href="/visit/tiktok" class="social-link">
+                    <img src="~/../../../public/assets/tiktok.webp" alt="">
+                </a>
+            </div>
+
         </div>
     </div>
 </template>
@@ -50,6 +60,30 @@ export default {
 
 <style scoped>
 
+.social-media {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 480px;
+    margin-left: -30px;
+    margin-bottom: -10px;
+}
+
+.social-media .social-link {
+    width: 70px;
+    height: auto;
+    padding: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.75);
+}
+.social-media .social-link img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
 .exit-area {
     background-color: rgba(255, 255, 255, 0.4);
     right: 0;
@@ -67,11 +101,10 @@ export default {
 }
 
 .text-area {
-    background-color: rgba(255, 255, 255, 0.6);
     position: relative;
     text-align: center;
-    padding: 10px 40px;
     bottom: -200px;
+    color: #ffffff;
 }
 
 .text-area p {
@@ -157,7 +190,7 @@ export default {
 
 .logo-anime {
     text-align: center;
-    height: 200px;
+    height: 180px;
 }
 
 .logo-anime img {
@@ -183,7 +216,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.96);
+    background-color: rgba(0, 0, 0, 0.9);
     flex-direction: column;
 }
 </style>

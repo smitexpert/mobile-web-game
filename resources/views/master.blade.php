@@ -19,6 +19,7 @@
                 <div class="list-group">
                     <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action">Upload Challenge</a>
                     <a href="{{ route('visitor') }}" class="list-group-item list-group-item-action">Visitors</a>
+                    <a href="{{ route('social-visit') }}" class="list-group-item list-group-item-action">Social Visits</a>
                   </div>
             </div>
             <div class="col-md-8">
