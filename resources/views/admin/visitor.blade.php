@@ -5,6 +5,7 @@
     <div class="col-md-12 mb-4">
         <div class="float-right">
             <a href="{{ route('visitor.download') }}" class="btn btn-success">Download</a>
+            <a href="{{ route('visitor.analytics') }}" class="btn btn-success">Analytics</a>
         </div>
     </div>
     <div class="col-md-12">

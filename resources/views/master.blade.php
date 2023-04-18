@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    @stack('styles')
 </head>
 <body>
     <div class="container">
@@ -27,5 +29,6 @@
             </div>
         </div>
     </div>
+    @stack('scripts')
 </body>
 </html>
