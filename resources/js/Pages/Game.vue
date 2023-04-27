@@ -47,7 +47,7 @@ export default {
             </div>
             <div class="item" @click="handleSelect">
                 <img src="~/../../../public/assets/red.webp" alt="">
-                <button class="select-btn wild">WILD</button>
+                <button class="select-btn wild">Wild</button>
             </div>
         </div>
 
