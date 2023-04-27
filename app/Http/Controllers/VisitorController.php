@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Visit;
 use App\Models\Visitor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,6 +26,32 @@ class VisitorController extends Controller
         $week_unique = DB::table('visitors')->whereBetween('created_at', [now()->subDays(7)->startOfDay(), now()->endOfDay()])->select(['ip'])->groupBy('ip')->get();
         $month_unique = DB::table('visitors')->whereBetween('created_at', [now()->subMonth()->startOfDay(), now()->endOfDay()])->select(['ip'])->groupBy('ip')->get();
         return view('admin.visitor', compact('total', 'total_unique', 'today', 'today_unique', 'week', 'week_unique', 'month', 'month_unique', 'total_play', 'today_play', 'week_play', 'month_play'));
+    }
+
+    public function analytics(Request $request)
+    {
+        // return $request->all();
+
+        $start_date = date('d/m/Y');
+        $end_date = date('d/m/Y');
+
+        if($request->has('start_date') && $request->has('end_date')) {
+            $start_date = $request->start_date;
+            $end_date = $request->end_date;
+        }
+
+        $start_date = Carbon::createFromFormat('d/m/Y', $start_date)->startOfDay();
+        $end_date = Carbon::createFromFormat('d/m/Y', $end_date)->endOfDay();
+
+        $total_play = DB::table('visitors')->select('ip', 'action')->whereBetween('created_at', [$start_date, $end_date])->get();
+        $visits = Visit::select(['ip', 'type', 'referer'])->whereBetween('created_at', [$start_date, $end_date])->get();
+        $visits_home = Visit::where('referer', 'LIKE', '%/home')->select(['ip', 'type', 'referer'])->whereBetween('created_at', [$start_date, $end_date])->get();
+        $visits_play = Visit::where('referer', 'LIKE', '%/play')->select(['ip', 'type', 'referer'])->whereBetween('created_at', [$start_date, $end_date])->get();
+
+        $start_date = date('m/d/Y', strtotime($start_date));
+        $end_date = date('m/d/Y', strtotime($end_date));
+
+        return view('admin.visitor-analytics', compact('total_play', 'visits', 'visits_home', 'visits_play', 'start_date', 'end_date'));
     }
 
     public function download()

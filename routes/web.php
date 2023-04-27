@@ -43,5 +43,8 @@ Route::prefix('admin')->group(function(){
         Route::get('visitors', [\App\Http\Controllers\VisitorController::class, 'index'])->name('visitor');
         Route::get('visitors/download', [\App\Http\Controllers\VisitorController::class, 'download'])->name('visitor.download');
         Route::get('social-visit', [App\Http\Controllers\VisitController::class, 'index'])->name('social-visit');
+
+
+        Route::get('visitors/analytics', [\App\Http\Controllers\VisitorController::class, 'analytics'])->name('visitor.analytics');
     });
 });
