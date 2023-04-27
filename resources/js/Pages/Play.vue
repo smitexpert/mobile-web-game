@@ -129,7 +129,7 @@ export default {
         },
         async handleCounter() {
 
-            this.playCount = this.playCount+1;
+            this.playCount = 0;
 
             if(this.playCount == this.showPopUpWhen) {
                 await this.fetchData();
