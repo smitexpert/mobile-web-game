@@ -106,7 +106,7 @@ export default {
         },
         handleSubmit() {
 
-            if(this.names.length >= 5)
+            if(this.names.length >= 20)
                 return
 
             if(this.names.filter(item => item == this.name.toUpperCase()).length > 0)
